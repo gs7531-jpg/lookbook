@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#120f10">
+  <meta name="description" content="돈되는팩트 인스타그램 룩북에서 소개한 옷을 쿠팡에서 만나보세요.">
+  <title>돈되는팩트 룩북 쇼핑</title>
+  <style>
+    :root {
+      --bg: #120f10;
+      --card: #1c1718;
+      --ink: #f4ece8;
+      --muted: #a89890;
+      --line: #2c2526;
+      --accent: #c45c6a;
+      --gold: #d4a574;
+      --header: rgba(18, 15, 16, .94);
+      --shadow: 0 1px 2px rgba(0,0,0,.25), 0 12px 28px rgba(0,0,0,.28);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+    body {
+      font-family: "Noto Sans CJK KR", "Noto Sans KR", "Apple SD Gothic Neo",
+        "Malgun Gothic", ui-sans-serif, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.45;
+      min-height: 100vh;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; }
+
+    .top {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: var(--header);
+      backdrop-filter: saturate(1.2) blur(12px);
+      -webkit-backdrop-filter: saturate(1.2) blur(12px);
+      border-bottom: 1px solid var(--line);
+      padding: calc(12px + env(safe-area-inset-top)) 16px 12px;
+    }
+    .brand {
+      font-size: 1.05rem;
+      font-weight: 750;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+    }
+    .sub {
+      margin-top: 2px;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .disclosure {
+      margin-top: 8px;
+      font-size: 0.72rem;
+      line-height: 1.45;
+      color: #f0d0d4;
+      background: rgba(196, 92, 106, .16);
+      border-left: 2px solid var(--accent);
+      padding: 6px 8px;
+      border-radius: 0 6px 6px 0;
+    }
+
+    main {
+      width: min(640px, 100%);
+      margin: 0 auto;
+      padding: 16px 16px 64px;
+    }
+    .jump {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 2px 0 14px;
+      margin: 0 -16px;
+      padding-left: 16px;
+      padding-right: 16px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .jump::-webkit-scrollbar { display: none; }
+    .jump a {
+      flex: 0 0 auto;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 12px;
+      box-shadow: 0 1px 1px rgba(0,0,0,.2);
+    }
+    .jump a em {
+      font-style: normal;
+      color: var(--muted);
+      font-weight: 500;
+      margin-left: 4px;
+    }
+
+    .section {
+      margin-top: 8px;
+      padding-top: 12px;
+      scroll-margin-top: 128px;
+    }
+    .section + .section {
+      margin-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+    .section-h { margin-bottom: 12px; }
+    .kicker {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .section-h h2 {
+      font-size: 1.22rem;
+      letter-spacing: -0.03em;
+      margin-top: 2px;
+    }
+    .count {
+      font-weight: 550;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .card {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      background: var(--card);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(44, 37, 38, .9);
+    }
+    .card:active { transform: scale(0.985); }
+    .thumb {
+      aspect-ratio: 1 / 1;
+      background: #151112;
+      overflow: hidden;
+    }
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .card-text .thumb {
+      aspect-ratio: auto;
+      min-height: 210px;
+    }
+    .ph-card {
+      width: 100%;
+      height: 100%;
+      min-height: 210px;
+      padding: 16px 14px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background:
+        radial-gradient(120% 80% at 20% 0%, rgba(196,92,106,.28), transparent 55%),
+        linear-gradient(165deg, #2a1c20 0%, #141012 68%);
+      color: #f4ece8;
+    }
+    .ph-lead {
+      font-size: 1.35rem;
+      font-weight: 750;
+      letter-spacing: -0.04em;
+      color: rgba(224,184,137,.92);
+      margin-bottom: auto;
+      line-height: 1.2;
+    }
+    .ph-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+    .ph-tags span {
+      border: 1px solid rgba(212,165,116,.45);
+      color: #e0b889;
+      font-size: 0.62rem;
+      letter-spacing: 0.04em;
+      padding: 2px 6px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+    .ph-name {
+      font-size: 0.78rem;
+      font-weight: 650;
+      letter-spacing: -0.03em;
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .ph-price {
+      margin-top: 8px;
+      font-size: 0.95rem;
+      font-weight: 750;
+      letter-spacing: -0.03em;
+      color: #f0d0d4;
+    }
+    .meta { padding: 10px 10px 12px; }
+    .name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 2.16em;
+    }
+    .price {
+      margin-top: 6px;
+      font-size: 0.92rem;
+      font-weight: 750;
+      letter-spacing: -0.03em;
+      color: var(--gold);
+    }
+
+    footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.75rem;
+      line-height: 1.55;
+    }
+    footer strong { color: var(--ink); font-weight: 650; }
+
+    @media (min-width: 640px) {
+      .grid { grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+      .top { padding-left: 24px; padding-right: 24px; }
+      main { padding-left: 0; padding-right: 0; }
+      .jump { margin: 0; padding-left: 0; padding-right: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <h1 class="brand">돈되는팩트 룩북 쇼핑</h1>
+    <p class="sub">SEXY EDIT</p>
+    <p class="disclosure">이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
+  </header>
+  <main>
+    <nav class="jump" aria-label="섹션 바로가기">
+<a href="#cat-onepiece">원피스 <em>17</em></a>
+<a href="#cat-top">탑 <em>23</em></a>
+<a href="#cat-skirt-pants">스커트·팬츠 <em>20</em></a>
+<a href="#cat-body-etc">바디수트·기타 <em>1</em></a>
+</nav>
+    
+    <section class="section" id="cat-onepiece">
+      <header class="section-h">
+        <p class="kicker">CATEGORY</p>
+        <h2>원피스 <span class="count">17</span></h2>
+      </header>
+      <div class="grid">
+        <a class="card" href="https://link.coupang.com/a/iCuWEesoyi" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/34c2/580a8de25c57f0ca1ada4165d8d6cbafc01efce3d70395358616b2a41f91.jpeg" alt="여성 백리스 원피스 여름 나시 민소매 롱원피스 화이트 휴양지" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">여성 백리스 원피스 여름 나시 민소매 롱원피스 화이트 휴양지</p><p class="price">26,800원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCuWZXRqfY" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/690c/5950be026bc3d8cf31301c09ffcbe74cc2b5c9763f6a7127d9a3beb88a78.png" alt="오프숄더 겸용 트임 롱 원피스 드레스" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">오프숄더 겸용 트임 롱 원피스 드레스</p><p class="price">37,800원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCuZKb7vno" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/b2e0/3f536a9a043a00dabd0ba8733e3d64e8148e66fee6a7ca79c63b2172a937.jpg" alt="파르티멘토 우먼 러플 레이스 트림 플레어 슬립 드레스 민트" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">파르티멘토 우먼 러플 레이스 트림 플레어 슬립 드레스 민트</p><p class="price">가격 확인</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCenIBGZJk" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/657x657q90trim/image/vendor_inventory/d676/f275006a963c2ec372cd40f2f5170be33bc5b6d8d1e3c94cd291c7df7ebc.jpg" alt="ROJI 하이슬릿 롱 원피스 2P" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">ROJI 하이슬릿 롱 원피스 2P</p><p class="price">15,900원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCvlfheHsW" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/9e49/5c2c8997db0cbcd5d19621f04fa241a6bec78f83cfcec319d7499fd6480f.jpg" alt="데일리앤 레딘 딥 브이넥 멜빵 플레어 뷔스티에 롱 원피스" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">데일리앤 레딘 딥 브이넥 멜빵 플레어 뷔스티에 롱 원피스</p><p class="price">가격 확인</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCvlR6667E" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/rs_quotation_api/xbjyj3ud/02e43788dd9b47a69272611cc556b086.png" alt="구디프 여성용 플라워 슬림핏 셔링 스모크 슬릿 뷔스티에 롱원피스" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">구디프 여성용 플라워 슬림핏 셔링 스모크 슬릿 뷔스티에 롱원피스</p><p class="price">가격 확인</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCvavtE7uC" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/e369/88622c4f3b93883ef164737972376ec6074502a20e7f8bb3ad1113d4718e.png" alt="데일로엔 여성 셔링 슬림핏 브이넥 골지 프릴 미니 긴팔 원피스" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">데일로엔 여성 셔링 슬림핏 브이넥 골지 프릴 미니 긴팔 원피스</p><p class="price">14,990원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCvjhJt2po" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/78e9/fb3f8a935bc880354261b6d9e40e6f0ecd02de20904ed0b2521d7da183b1.jpeg" alt="슬림 골지 롱원피스" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">슬림 골지 롱원피스</p><p class="price">19,600원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCvaQaeLrU" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/557b/cf73164327da07a1b4e33f8a32fe9b407b57c138a14036ef175d7c65bc1c.jpeg" alt="Yellwell 여성 오프숄더 롱원피스 여름 화이트 허리라인 슬림 휴양지 드레스" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">Yellwell 여성 오프숄더 롱원피스 여름 화이트 허리라인 슬림 휴양지 드레스</p><p class="price">22,430원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCegYwg0lw" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/657x657q90trim/image/retail/images/2025/07/29/18/2/cf8df649-dafd-46d5-9dcf-cffc25934459.jpg" alt="타니즈 플립 브이넥 슬림 골지 니트원피스" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">타니즈 플립 브이넥 슬림 골지 니트원피스</p><p class="price">21,510원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCdTEA2plQ" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/5e5c/0f35c8f6d2a30b285d82702000ef01ea0a5e0ed2ee97cdd4c060efe8678f.jpg" alt="UPPERCUT 여성 새틴 끈나시 슬림 롱원피스 슬립 실크 원피스" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">UPPERCUT 여성 새틴 끈나시 슬림 롱원피스 슬립 실크 원피스</p><p class="price">25,400원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCejoQawcm" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/657x657q90trim/image/rs_quotation_api/qtlro2pz/5d22cd63aac74cf88d4968bbccc095d4.jpg" alt="피어니스트 여성용 스트립 나시 머메이드 롱원피스 빅사이즈 포함" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">피어니스트 여성용 스트립 나시 머메이드 롱원피스 빅사이즈 포함</p><p class="price">11,900원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCeniYJkkK" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/657x657q90trim/image/vendor_inventory/a0fe/d2e30a6875e5980ffaa60985ccae3bd2fedb147d2d8df32cbd58038d14fd.png" alt="앤드가든 휴양지 원피스 홀터넥 민소매 고급자수 몸매커버" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">앤드가든 휴양지 원피스 홀터넥 민소매 고급자수 몸매커버</p><p class="price">22,900원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCdUww5HR6" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/39e5/866fdb653f05aa3f3173b357732085d4014adfcfc55fad7a81fd2dbae635.png" alt="해피인뉴 편안한 여름 끈나시 트임 맥시 롱 원피스" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">해피인뉴 편안한 여름 끈나시 트임 맥시 롱 원피스</p><p class="price">15,810원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCwPnKfC1c" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/8ba0/dcea617810e0b00502d36bf47cd5950aca68b996baf73b8a84886e0c2373.jpg" alt="헬리꽁땡 시크데님큐티원피스" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">헬리꽁땡 시크데님큐티원피스</p><p class="price">23,540원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCwEb67usS" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/74ac/b3ef2cf20a1a9e149356f211638a06e2441412300f06df1133ba588a05f7.jpg" alt="무신사 스탠다드 우먼 우먼즈 슬리브리스 포멀 미니 드레스 그레이" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">무신사 스탠다드 우먼 우먼즈 슬리브리스 포멀 미니 드레스 그레이</p><p class="price">78,300원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCwEQd7X4v" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/7d0a/cd834aa80a6a47923887d4965517a2cbce1799d25bf1cdaa2bf4b6be13a3.jpg" alt="무신사 스탠다드 우먼 한소희 PICK 우먼즈 리브드 와이 넥 긴소매 미니 드레스 크림" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">무신사 스탠다드 우먼 한소희 PICK 우먼즈 리브드 와이 넥 긴소매 미니 드레스 크림</p><p class="price">49,700원</p></div></a>
+      </div>
+    </section>
+    
+
+    <section class="section" id="cat-top">
+      <header class="section-h">
+        <p class="kicker">CATEGORY</p>
+        <h2>탑 <span class="count">23</span></h2>
+      </header>
+      <div class="grid">
+        <a class="card" href="https://link.coupang.com/a/iCeZVeWHue" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/657x657q90trim/image/vendor_inventory/929f/6d71fd95f3f496b585ca7413c636ec0281a1d5bc8ad0b0fc813c5716ed34.jpg" alt="국내제작 고퀄 잘록 허리 슬림핏 홀터넥 나시" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">국내제작 고퀄 잘록 허리 슬림핏 홀터넥 나시</p><p class="price">12,920원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCu4uQ0Q9s" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/rs_quotation_api/xcjn3e2w/7c24382b08784bd481c22dc1800e431c.jpg" alt="큐니걸스 여성용 필수소장 크롭이너나시" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">큐니걸스 여성용 필수소장 크롭이너나시</p><p class="price">5,900원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCvhisMc44" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/70fd/fd3d75dda1404601be1a369aafbfbe94f39a775007109df1fb46e020d0d0.jpg" alt="라라홀리 브이넥 랩스타일 허리 셔링 리본끈 퍼프소매 반팔 크롭 블라우스" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">라라홀리 브이넥 랩스타일 허리 셔링 리본끈 퍼프소매 반팔 크롭 블라우스</p><p class="price">가격 확인</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCvdWsrPJk" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/4d19/6cf27e45f4ec7e451084edcb2001fb7a85b23eccba405104efb66bd88a9c.jpg" alt="바나나2 여리여리 여성 여름 홀터 나시 가디건 투피스 세트" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">바나나2 여리여리 여성 여름 홀터 나시 가디건 투피스 세트</p><p class="price">가격 확인</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCvoM5PxLM" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/4f79/45747dc8f07be3809921405751c7bf2aa5300fa433be686c148030cea122.jpg" alt="디디댄스 카모 크롭 댄서복 스트릿 댄스복 KPOP 방송의상 걸스힙합" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">디디댄스 카모 크롭 댄서복 스트릿 댄스복 KPOP 방송의상 걸스힙합</p><p class="price">가격 확인</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCu8bNVfPM" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/a8bf/7362e2e187138d04860a3a4c22d026a7270759d94b3f7b884ab231959a73.jpg" alt="끈노출X 워터밤 여름나시 크롭나시 흠뻑쇼 쫀쫀 스판 스퀘어넥 나시" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">끈노출X 워터밤 여름나시 크롭나시 흠뻑쇼 쫀쫀 스판 스퀘어넥 나시</p><p class="price">15,000원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCu8vE6o3g" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/rs_quotation_api/ruplam7f/17bf2396344a4542beda63b722f9d112.jpg" alt="구디프 여성용 매끈한 바디핏 슬림 크롭 나시" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">구디프 여성용 매끈한 바디핏 슬림 크롭 나시</p><p class="price">5,760원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCu8PM5NTg" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/542e/1b4fa84692e790fc8ad4550f18022a3a9b25e7f33be0c810e074d6e4cca0.jpg" alt="VANANA2 국내생산 홀터넥 긴팔티 레이어드세트" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">VANANA2 국내생산 홀터넥 긴팔티 레이어드세트</p><p class="price">24,770원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCvotlS0Mm" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/bd6f/4d7afa7d0be9b45bdcea428949fd3033a926fc4d5b966f69f8063d76fdca.png" alt="holssi 캡내장 레이스 끈나시 슬림핏 민소매 탑" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">holssi 캡내장 레이스 끈나시 슬림핏 민소매 탑</p><p class="price">가격 확인</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCvnPn8snc" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/2732/90def1f7a75a2e8f350ea11da7cc5e6981eccf44fdfe513b3a9a66a1302c.jpg" alt="제이앤썸 트위드 니트 가디건 크롭 스퀘어넥 슬리브리스 나시 투피스 셋업" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">제이앤썸 트위드 니트 가디건 크롭 스퀘어넥 슬리브리스 나시 투피스 셋업</p><p class="price">가격 확인</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCvo7RY1Vk" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/6080/0ae16130319fca32d1c567adc646ea043d4e8d4db16ded38b8889cebdddd.jpg" alt="디디댄스 스터드 찡골지나시 스트릿 댄스복 KPOP 방송의상" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">디디댄스 스터드 찡골지나시 스트릿 댄스복 KPOP 방송의상</p><p class="price">가격 확인</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCvnaXYc4O" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/retail/images/2024/09/04/15/4/d74f1074-73fd-4d5c-89c2-75d4900371a8.jpg" alt="시크블랙 이루나 셔링 플레어 나시 + 볼레로 가디건 세트" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">시크블랙 이루나 셔링 플레어 나시 + 볼레로 가디건 세트</p><p class="price">가격 확인</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCvbaFkvUO" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/a23e/3e0a585a03f1b4ac45f6e1abf1e1fcb3e0ce6c41a0d6cbb16362fad644be.jpg" alt="여름 랩 홀터넥 민소매 나시 레이어드 하객룩 이너 트임" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">여름 랩 홀터넥 민소매 나시 레이어드 하객룩 이너 트임</p><p class="price">45,600원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCvp8GoJLU" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/0ced/ef94fb2a2ca6ee3ac43dcf0a8ff423ac169ee0df8ae07fae646c47e5aaef.jpg" alt="여성 여름 민소매 폴라티 나시티 크롭 슬림핏" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">여성 여름 민소매 폴라티 나시티 크롭 슬림핏</p><p class="price">가격 확인</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCvgYrrwwm" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/e026/dc1aff7a2bc9173f729dfd5deb5b0841157d9b89cb6cff078a2765c755bb.jpeg" alt="여성 오프숄더 민소매 블라우스 플리츠 스모크 탑 셔링" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">여성 오프숄더 민소매 블라우스 플리츠 스모크 탑 셔링</p><p class="price">가격 확인</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCevzOtbyK" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/657x657q90trim/image/retail/images/34505966644651-9ebf0271-d1e7-427f-96c5-8b694d705d7f.jpg" alt="엘쏘 여성용 언밸런스 크롭 반팔 티셔츠" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">엘쏘 여성용 언밸런스 크롭 반팔 티셔츠</p><p class="price">6,400원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCeX0WjMGW" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/657x657q90trim/image/vendor_inventory/800a/9582ae7d2a1469d86bcaa32fa96bbc184904d1cd450f78a8c7029d213886.png" alt="투펄슨 여성 레이스 캡나시" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">투펄슨 여성 레이스 캡나시</p><p class="price">9,900원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCe1eGo2lU" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/657x657q90trim/image/1025_amir_coupang_oct_80k/9be8/a1aa5f252c3e53c35009de7e8c481e8a85485e5a8c47187311c422a05527.jpg" alt="구디프 여성용 통기성 오프숄더 5부 소매 티셔츠" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">구디프 여성용 통기성 오프숄더 5부 소매 티셔츠</p><p class="price">8,360원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCwkY20s8W" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/5b91/ed83a1b00a8ae91d8b29ca6eb2bebaaa1b6286c8b3423435933f9eba3041.jpg" alt="나시 여성 시원한 뷔스티에 레이스 휴양지 바캉스룩" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">나시 여성 시원한 뷔스티에 레이스 휴양지 바캉스룩</p><p class="price">가격 확인</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCwDbod6nk" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/9761/bead916e718fbd6f827a2b819559d1ab0c4d957cc3d854706a173a94ccf4.jpg" alt="목폴라 나시 슬림 탑 JK02 민소매 얇은 플리즈 데" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">목폴라 나시 슬림 탑 JK02 민소매 얇은 플리즈 데</p><p class="price">25,300원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCwDGBD3iS" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/5e2e/b61b539ab21c2e16ef0240cda64d270d9afba84f17cf591e84d294faa40c.jpg" alt="무신사 스탠다드 스토커즈 컬래버빅토리아 울 미니멀 리브드 크롭 니트 오트밀" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">무신사 스탠다드 스토커즈 컬래버빅토리아 울 미니멀 리브드 크롭 니트 오트밀</p><p class="price">59,100원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCwNL8sX1x" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/b9dd/226731c216f480b0e6a2459a46157f0cad1ebd1463313c31e8dab4b8038f.jpg" alt="터틀넥 민소매 여성 호환제품 티셔츠 캐주얼 나시 나시탑" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">터틀넥 민소매 여성 호환제품 티셔츠 캐주얼 나시 나시탑</p><p class="price">가격 확인</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCwOSzm3oq" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/f2f2/e4102575c918c125827969d6ba5d79c13ac06f47f0cab7373b2c603dd15f.jpg" alt="패션 여성 트위드 스커트 세트 봄 가을 여자 하운드투스 체크 트위드 재킷 + 미니 스커트 세트 JXH" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">패션 여성 트위드 스커트 세트 봄 가을 여자 하운드투스 체크 트위드 재킷 + 미니 스커트 세트 JXH</p><p class="price">가격 확인</p></div></a>
+      </div>
+    </section>
+    
+
+    <section class="section" id="cat-skirt-pants">
+      <header class="section-h">
+        <p class="kicker">CATEGORY</p>
+        <h2>스커트·팬츠 <span class="count">20</span></h2>
+      </header>
+      <div class="grid">
+        <a class="card" href="https://link.coupang.com/a/iCuYnQHt2O" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/873b/9ce1efa08774eec70de9e8c21a7ed9e696eb4f6c541cb53e399a835c1b1f.jpg" alt="하늘비즈 하이웨이스트 레이스 프릴 데님 숏팬츠 힙업 데님쇼츠" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">하늘비즈 하이웨이스트 레이스 프릴 데님 숏팬츠 힙업 데님쇼츠</p><p class="price">27,900원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCeILbqLTw" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/657x657q90trim/image/retail/images/80363683069326-9ecb4c7d-cc7a-4c08-99a4-2d5218b4fd6b.jpg" alt="잘빠진 레더 스판 미니스커트" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">잘빠진 레더 스판 미니스커트</p><p class="price">15,400원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCvgiKrpHo" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/a875/c869b13ef70b276c63d9a1863e43c7d57527408428d669d4a2ec23af41ba.png" alt="허리 밴딩 H라인 스판 미니 스커트" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">허리 밴딩 H라인 스판 미니 스커트</p><p class="price">가격 확인</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCvkA3qWVU" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/retail/images/2023/12/14/12/7/70c66280-a0b2-4d25-8a88-1486fc76b5b7.jpg" alt="비비에모 슬림핏 머메이드 롱 스커트 05833" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">비비에모 슬림핏 머메이드 롱 스커트 05833</p><p class="price">가격 확인</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCu9QxGMLc" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/rs_quotation_api/d4raslty/78a5baf6f7b845aca88a9eb05d70b317.jpg" alt="피어니스트 A라인 워싱 데님 미니 스커트" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">피어니스트 A라인 워싱 데님 미니 스커트</p><p class="price">19,600원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCvkUJIu7g" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/1617/679cfcea6e22703378b4d9df38bda948cf120d0f9ec00fc46b9803ade43a.jpeg" alt="지퍼 트임 블랙 스커트 슬림핏 일자핏 롱스커트" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">지퍼 트임 블랙 스커트 슬림핏 일자핏 롱스커트</p><p class="price">가격 확인</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCvegeqnnM" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/e5dd/b6a6ddd8ce55cbca97b783e752991183f8ddd49814ee1f93544bdcf4517b.png" alt="Makone 여성 H라인 모직 힙업 미니스커트" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">Makone 여성 H라인 모직 힙업 미니스커트</p><p class="price">가격 확인</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCvgD2BXMG" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/67be/c90cb96b6ea4a7796ded652566e5f5dc74517b7e42c7a82d9ccdc4ffa62e.jpg" alt="여성 하이웨스트 새틴 타이 랩 플리츠 플레어 미니 스커트" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">여성 하이웨스트 새틴 타이 랩 플리츠 플레어 미니 스커트</p><p class="price">13,150원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCvci8PBYa" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/66a7/67208daa09547355d764c2b259d3e110732cc9d2a6d522bef98410a82210.jpg" alt="무신사 스탠다드 우먼즈 프론트 슬릿 데님 롱 스커트 워시드 블랙" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">무신사 스탠다드 우먼즈 프론트 슬릿 데님 롱 스커트 워시드 블랙</p><p class="price">50,000원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCvfhO8H5U" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/64c3/3ab3c21f68c341b6b58ad3124c9bce5d8f10d17094a96d3d1231cef6b118.jpg" alt="오프벨 H라인 기본 미니 스커트" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">오프벨 H라인 기본 미니 스커트</p><p class="price">가격 확인</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCvcC3i6EK" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/60b7/be2af13e8b3362258fa851a1e04b0d8cdc1860d0ecbaf7db671fab232ef8.jpg" alt="케이트 레오파드 프린트 슬릿 맥시 스커트" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">케이트 레오파드 프린트 슬릿 맥시 스커트</p><p class="price">가격 확인</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCdS87Ry68" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/8cc8/5e84020502877a41a0f47e9431dcaf84e0212059ee8249440df1813d0613.jpg" alt="이푼아이 H라인 스판 기본 미니 스커트" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">이푼아이 H라인 스판 기본 미니 스커트</p><p class="price">22,900원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCeYLgbqA8" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/657x657q90trim/image/vendor_inventory/928e/85ac4824431ec348796f8afd5291c9d3116b56b2f52dbd892e421e109b42.jpg" alt="슬림스판 미니스커트" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">슬림스판 미니스커트</p><p class="price">9,200원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCwzCihqBU" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/rs_quotation_api/k0q72n9u/885171784ea4467cae7412a435b67ad6.jpg" alt="니썸 여성용 핀터 레이스 숏 팬츠" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">니썸 여성용 핀터 레이스 숏 팬츠</p><p class="price">가격 확인</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCwvfr4w0G" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/rs_quotation_api/vaqhjjvx/e8233bff674f46e390a98c5404d71690.jpg" alt="쥬시쥬디 여성용 트위드 미니 스커트 JZSK621D" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">쥬시쥬디 여성용 트위드 미니 스커트 JZSK621D</p><p class="price">42,120원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCwGjp3XHM" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/rs_quotation_api/dnvdcml9/f5a936519ec24cf4bafad0c7d43597fd.jpg" alt="슈가펀 뮤티 포켓 미니 스커트" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">슈가펀 뮤티 포켓 미니 스커트</p><p class="price">7,170원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCwA33lfYy" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/e7c5/87717a20049bb14efa9bd10433d32c6ea5d2e9b48c561744e1b85c9bd984.jpg" alt="라틴 댄스 프린트 반신 댄스스커트 프린지스커트 레오파드 라틴댄스 바차타 살사 무대의상 술치마 공연복" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">라틴 댄스 프린트 반신 댄스스커트 프린지스커트 레오파드 라틴댄스 바차타 살사 무대의상 술치마 공연복</p><p class="price">27,500원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCwB0jN97Q" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/d3e9/c138d8601f14d1e7f8d67446504e231a6f31e2120b50c4120782e63235e2.jpg" alt="리스트 하운드투스 트위드 미니 스커트" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">리스트 하운드투스 트위드 미니 스커트</p><p class="price">69,000원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCwJL7jgAu" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/5278/7d7e043e8d4bda66d7ae0fbde84d17f11f92e5f7d2f1029d614b95a3f60c.jpeg" alt="여성 하운드투스 패턴 밴딩 스판 미니 스커트 체크 무늬 치마" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">여성 하운드투스 패턴 밴딩 스판 미니 스커트 체크 무늬 치마</p><p class="price">11,000원</p></div></a>
+<a class="card" href="https://link.coupang.com/a/iCwNpshXwH" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/e43d/334e12548a36d7588b0179d78028e2ffb93a78cc917b6fe317f6265740c6.jpg" alt="일로딜로 말랑 레이스 숏 팬츠 IDTM2640Z" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">일로딜로 말랑 레이스 숏 팬츠 IDTM2640Z</p><p class="price">가격 확인</p></div></a>
+      </div>
+    </section>
+    
+
+    <section class="section" id="cat-body-etc">
+      <header class="section-h">
+        <p class="kicker">CATEGORY</p>
+        <h2>바디수트·기타 <span class="count">1</span></h2>
+      </header>
+      <div class="grid">
+        <a class="card" href="https://link.coupang.com/a/iCvpOATHLo" target="_blank" rel="sponsored noopener"><div class="thumb"><img src="https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/vendor_inventory/5856/bae2dd029a99469e5aba282023251e140b39aef6e290a9b10ca6a8888ed7.jpg" alt="JoYouth 라틴댄스복 바디슈트 프릴 긴팔 상의" width="640" height="640" loading="eager" decoding="async" referrerpolicy="no-referrer"></div><div class="meta"><p class="name">JoYouth 라틴댄스복 바디슈트 프릴 긴팔 상의</p><p class="price">가격 확인</p></div></a>
+      </div>
+    </section>
+    
+    <footer>
+      <p>총 61개 상품 · 사진 61개 · 가격은 쿠팡 판매가 기준이며 변동될 수 있습니다.</p>
+      <p>모든 상품 링크는 쿠팡 파트너스 링크로 연결됩니다.</p>
+      <p><strong>@rotiflstifl1</strong></p>
+    </footer>
+  </main>
+</body>
+</html>
